@@ -477,6 +477,7 @@ monthly_totals_vs_avg_fig.update_layout(
 
 # Set up the Dash application
 app = Dash(__name__)
+server=app.server
 
 app.layout = html.Div([
     html.H1("Inventory Dashboard"),
