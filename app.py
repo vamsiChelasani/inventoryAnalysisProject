@@ -1,16 +1,49 @@
 import plotly.express as px
 import plotly.graph_objs as go
 import pandas as pd
+import glob
 from plotly.subplots import make_subplots
 from dash import Dash, html, dcc, callback, Output, Input
 
-dsi_df                                 = pd.read_csv('final_data/dsi.csv')
-inventory_ratio_vs_avg_df              = pd.read_csv('final_data/inventory_turnover_ratio_vs_avg_ratio.csv')
-monthly_company_total_vs_moving_avg_df = pd.read_csv('final_data/monthly_company_total_vs_moving_avg.csv')
-monthly_inventory_turnover_ratio_df    = pd.read_csv('final_data/monthly_inventory_turnover_ratio.csv')
-monthly_totals_companywise_df          = pd.read_csv('final_data/monthly_values_companywise.csv')
-monthly_totals_vs_growth_rate_df       = pd.read_csv('final_data/monthly_values_vs_growth_rate.csv')
-monthly_values_vs_moving_avg_df        = pd.read_csv('final_data/monthly_values_vs_moving_avg.csv')
+directory = 'final_data/monthly_values_companywise'
+
+# Use glob to find the single CSV file in the directory
+csv_files = glob.glob(f'{directory}/*.csv')
+
+# Check if the CSV file is found and read it
+if csv_files:
+    monthly_totals_companywise_df = pd.read_csv(csv_files[0])
+
+directory = 'final_data/monthly_values_vs_growth_rate'
+csv_files = glob.glob(f'{directory}/*.csv')
+if csv_files:
+    monthly_totals_vs_growth_rate_df = pd.read_csv(csv_files[0])
+
+directory = 'final_data/monthly_values_vs_moving_avg'
+csv_files = glob.glob(f'{directory}/*.csv')
+if csv_files:
+    monthly_values_vs_moving_avg_df = pd.read_csv(csv_files[0])
+
+directory = 'final_data/monthly_company_total_vs_moving_avg'
+csv_files = glob.glob(f'{directory}/*.csv')
+if csv_files:
+    monthly_company_total_vs_moving_avg_df = pd.read_csv(csv_files[0])
+
+directory = 'final_data/monthly_inventory_turnover_ratio'
+csv_files = glob.glob(f'{directory}/*.csv')
+if csv_files:
+    monthly_inventory_turnover_ratio_df = pd.read_csv(csv_files[0])
+
+directory = 'final_data/inventory_turnover_ratio_vs_avg_ratio'
+csv_files = glob.glob(f'{directory}/*.csv')
+if csv_files:
+    inventory_ratio_vs_avg_df = pd.read_csv(csv_files[0])
+
+directory = 'final_data/days_sales_inventory'
+csv_files = glob.glob(f'{directory}/*.csv')
+if csv_files:
+    dsi_df = pd.read_csv(csv_files[0])
+
 
 '''
 ***********************************************************************
